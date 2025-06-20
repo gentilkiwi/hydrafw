@@ -164,6 +164,10 @@ const t_token_dict tl_dict[] = {
 	{ T_DELAY, "delay" },
 	{ T_CLOCK_STRETCH, "clock-stretch" },
 	{ T_TIMEOUT, "timeout" },
+	{ T_PEEK, "peek" },
+	{ T_POKE, "poke" },
+	{ T_SWIO, "swio" },
+	{ T_CONTINUITY, "continuity" },
 	/* Developer warning add new command(s) here */
 
 	/* BP-compatible commands */
@@ -1372,6 +1376,10 @@ t_token tokens_mode_onewire[] = {
 		T_ARG_STRING,
 		.help = "Write string"
 	},
+	{
+		T_DEBUG,
+		.help = "minichlink compatible SWIO debugger"
+	},
 	/* BP commands */
 	{
 		T_LEFT_SQ,
@@ -1958,7 +1966,6 @@ t_token tokens_freq[] = {
 	{ }
 };
 
-
 t_token tokens_really[] = {
 	{ T_REALLY },
 	{ }
@@ -2037,6 +2044,17 @@ t_token tokens_show[] = {
 };
 
 t_token tokens_debug[] = {
+	{
+		T_PEEK,
+		.arg_type = T_ARG_UINT,
+		.help = "Peek a value from memory"
+	},
+	{
+		T_POKE,
+		.flags = T_FLAG_SUFFIX_TOKEN_DELIM_INT,
+		.arg_type = T_ARG_UINT,
+		.help = "Poke a value to memory"
+	},
 	{
 		T_TOKENLINE,
 		.help = "Tokenline dump for every command"
@@ -2129,6 +2147,11 @@ t_token tl_tokens[] = {
 		.subtokens = tokens_freq,
 		.help = "Read frequency",
 		.help_full = "Usage: frequency"
+	},
+	{
+		T_CONTINUITY,
+		.help = "Test continuity",
+		.help_full = "Usage: Test continuity between PB8 and PB9"
 	},
 	{
 		T_GPIO,
