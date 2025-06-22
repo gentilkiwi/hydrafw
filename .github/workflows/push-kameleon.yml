@@ -1,6 +1,6 @@
 name: CI-KAMELEON
-
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
